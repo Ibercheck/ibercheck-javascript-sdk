@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "newLine": "LF",
+    "removeComments": false,
+    "outFile": "dist/js/ibercheck-sdk.js",
+    "sourceMap": false,
+    "target": "ES5"
+  },
+  "exclude": [
+    "bower_components",
+    "dist",
+    "node_modules",
+    "test"
+  ]
+}

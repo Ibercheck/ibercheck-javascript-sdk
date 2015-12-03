@@ -1,0 +1,34 @@
+{
+  "name": "ibercheck-javascript-sdk",
+  "description": "Ibercheck SDK for JavaScript",
+  "homepage": "https://www.ibercheck.com",
+  "license": "MIT",
+  "keywords": [
+    "ibercheck"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Ibercheck/ibercheck-javascript-sdk.git"
+  },
+  "moduleType": [
+    "globals"
+  ],
+  "main": [
+    "dist/js/ibercheck-sdk.js"
+  ],
+  "devDependencies": {
+    "jquery": "*"
+  },
+  "typescript": {
+    "definitions": [
+      "dist/js/ibercheck-sdk.d.ts",
+      "src/ts/IGenericResponse.d.ts"
+    ]
+  },
+  "ignore": [
+    "**/.*",
+    "*.js",
+    "*.json",
+    "test"
+  ]
+}
