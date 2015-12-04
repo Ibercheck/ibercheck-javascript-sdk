@@ -117,9 +117,9 @@ Example:
     // Check if the model has the link `fooLink`
     if (IbercheckApi.Helper.HalLink.hasLink(ApiResponse, "fooLink")) {
       // Retrieve the link `fooLink`
-      var endpoint = IbercheckApi.Helper.HalLink.getLink(ApiResponse, "fooLink");
+      var fooLink = IbercheckApi.Helper.HalLink.getLink(ApiResponse, "fooLink");
 
-      return IbercheckApi.ApiRequest.get(oauth2_token, endpoint);
+      return IbercheckApi.ApiRequest.get(oauth2_token, fooLink.href);
     }
   }
 
