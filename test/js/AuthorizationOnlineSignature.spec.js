@@ -39,9 +39,10 @@ describe("AuthorizationOnlineSignature Test", function () {
 
   it("Return model", function (done) {
     var expectedPayload = {
-      detail: "error message",
+      type: "http:\/\/www.w3.org\/Protocols\/rfc2616\/rfc2616-sec10.html",
+      title: "Internal Server Error",
       status: 500,
-      title: "generic error"
+      detail: ""
     };
     var expectedError = new IbercheckApi.Errors.ApiLogicError(
       expectedPayload.status,

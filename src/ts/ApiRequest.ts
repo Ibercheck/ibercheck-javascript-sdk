@@ -117,7 +117,7 @@ module IbercheckApi {
                     }
                 }
                 throw new ApiErrors.ValidationError(response.status, response.title, response.detail, <{any: string}>messages);
-            } else if (response.detail) {
+            } else if (response.hasOwnProperty("detail")) {
                 throw new ApiErrors.ApiLogicError(response.status, response.title, response.detail);
             }
         }
