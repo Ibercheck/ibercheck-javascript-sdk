@@ -1,3 +1,5 @@
+/// <reference types="jquery" />
+/// <reference types="hypertext-application-language" />
 declare module IbercheckApi {
     class ApiRequest {
         /**
@@ -31,26 +33,26 @@ declare module IbercheckApi {
          *
          * @param {string} accessToken
          * @param {string} endpoint
-         * @param {HTMLInputElement} file
+         * @param {Blob} file
          * @returns {Promise}
          */
-        static upload(accessToken: string, endpoint: string, file: HTMLInputElement): Promise<IGenericResponse>;
+        static upload(accessToken: string, endpoint: string, file: Blob): Promise<IGenericResponse>;
         /**
          * Error handler
          *
-         * @param {XMLHttpRequest} jqXHR
+         * @param {JQueryXHR} jqXHR
          * @param {string} textStatus
          * @param {string|exception} errorThrown
          */
-        static errorMethod(jqXHR: XMLHttpRequest, textStatus: string, errorThrown: string): void;
+        static errorMethod(jqXHR: JQueryXHR, textStatus: string, errorThrown: string): void;
         /**
          * Test if response is an error thrown by the API.
          *
-         * @param {Apigility.ApplicationProblem} response API response.
+         * @param {any} response API response.
          * @throws {ValidationError} if it's a error response due input validation error.
          * @throws {ApiLogicError} for any other kind of error returned by the API.
          */
-        static testForLogicalError(response: Apigility.ApplicationProblem): void;
+        static testForLogicalError(response: any): void;
         static ajax(endpoint: string, accessToken: string, ajaxOptions?: JQueryAjaxSettings): Promise<IGenericResponse>;
     }
 }
@@ -59,7 +61,7 @@ declare module IbercheckApi {
      * Notify the application from events in other windows.
      */
     class AuthorizationOnlineSignature {
-        apiHost: string;
+        readonly apiHost: string;
         /**
          * @param {string} apiHost
          */

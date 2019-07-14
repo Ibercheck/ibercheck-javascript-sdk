@@ -5,12 +5,12 @@
     "removeComments": false,
     "outFile": "dist/js/ibercheck-sdk.js",
     "sourceMap": false,
-    "target": "ES5"
-  },
-  "exclude": [
-    "bower_components",
-    "dist",
-    "node_modules",
-    "test"
-  ]
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es5",
+      "scripthost",
+      "es2015.promise"
+    ]
+  }
 }

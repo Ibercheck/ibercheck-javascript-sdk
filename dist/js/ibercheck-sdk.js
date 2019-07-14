@@ -1,7 +1,20 @@
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var IbercheckApi;
 (function (IbercheckApi) {
     "use strict";
-    var ApiRequest = (function () {
+    var ApiRequest = /** @class */ (function () {
         function ApiRequest() {
         }
         /**
@@ -41,24 +54,24 @@ var IbercheckApi;
          *
          * @param {string} accessToken
          * @param {string} endpoint
-         * @param {HTMLInputElement} file
+         * @param {Blob} file
          * @returns {Promise}
          */
         ApiRequest.upload = function (accessToken, endpoint, file) {
             var payload = new FormData();
             payload.append("file", file);
             return this.ajax(endpoint, accessToken, {
-                type: "POST",
+                contentType: false,
                 data: payload,
                 dataType: "json",
                 processData: false,
-                contentType: false // Set content type to false as jQuery will tell the server its a query string request
+                type: "POST",
             });
         };
         /**
          * Error handler
          *
-         * @param {XMLHttpRequest} jqXHR
+         * @param {JQueryXHR} jqXHR
          * @param {string} textStatus
          * @param {string|exception} errorThrown
          */
@@ -91,7 +104,7 @@ var IbercheckApi;
         /**
          * Test if response is an error thrown by the API.
          *
-         * @param {Apigility.ApplicationProblem} response API response.
+         * @param {any} response API response.
          * @throws {ValidationError} if it's a error response due input validation error.
          * @throws {ApiLogicError} for any other kind of error returned by the API.
          */
@@ -102,7 +115,7 @@ var IbercheckApi;
                 var object = response.validation_messages;
                 for (var input in object) {
                     if (object.hasOwnProperty(input)) {
-                        if (jQuery.isArray(object[input])) {
+                        if (Array.isArray(object[input])) {
                             messages[input] = object[input][0];
                         }
                         else if (jQuery.isPlainObject(object[input])) {
@@ -119,13 +132,13 @@ var IbercheckApi;
         ApiRequest.ajax = function (endpoint, accessToken, ajaxOptions) {
             return new Promise(function (resolve, reject) {
                 var settings = {
-                    type: "GET",
-                    url: endpoint,
                     async: true,
                     contentType: "application/vnd.ibercheck.v1+json",
+                    type: "GET",
+                    url: endpoint,
                     beforeSend: function (jqXHR) {
                         jqXHR.setRequestHeader("Authorization", "Bearer " + accessToken);
-                    }
+                    },
                 };
                 jQuery.extend(true, settings, ajaxOptions);
                 jQuery.ajax(settings)
@@ -153,7 +166,7 @@ var IbercheckApi;
             });
         };
         return ApiRequest;
-    })();
+    }());
     IbercheckApi.ApiRequest = ApiRequest;
 })(IbercheckApi || (IbercheckApi = {}));
 var IbercheckApi;
@@ -162,7 +175,7 @@ var IbercheckApi;
     /**
      * Notify the application from events in other windows.
      */
-    var AuthorizationOnlineSignature = (function () {
+    var AuthorizationOnlineSignature = /** @class */ (function () {
         /**
          * @param {string} apiHost
          */
@@ -202,7 +215,7 @@ var IbercheckApi;
             });
         };
         return AuthorizationOnlineSignature;
-    })();
+    }());
     IbercheckApi.AuthorizationOnlineSignature = AuthorizationOnlineSignature;
 })(IbercheckApi || (IbercheckApi = {}));
 var IbercheckApi;
@@ -210,7 +223,7 @@ var IbercheckApi;
     var Errors;
     (function (Errors) {
         "use strict";
-        var ApiLogicError = (function () {
+        var ApiLogicError = /** @class */ (function () {
             /**
              * @param {number} code ApplicationProblem `status` field.
              * @param {string} name ApplicationProblem `title` field.
@@ -222,7 +235,7 @@ var IbercheckApi;
                 this.message = message;
             }
             return ApiLogicError;
-        })();
+        }());
         Errors.ApiLogicError = ApiLogicError;
     })(Errors = IbercheckApi.Errors || (IbercheckApi.Errors = {}));
 })(IbercheckApi || (IbercheckApi = {}));
@@ -231,34 +244,30 @@ var IbercheckApi;
     var Errors;
     (function (Errors) {
         "use strict";
-        var NetworkError = (function () {
+        var NetworkError = /** @class */ (function () {
             function NetworkError(message) {
                 this.name = "NetworkError";
                 this.message = message;
             }
             return NetworkError;
-        })();
+        }());
         Errors.NetworkError = NetworkError;
     })(Errors = IbercheckApi.Errors || (IbercheckApi.Errors = {}));
 })(IbercheckApi || (IbercheckApi = {}));
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 var IbercheckApi;
 (function (IbercheckApi) {
     var Errors;
     (function (Errors) {
         "use strict";
-        var NetworkTimeoutError = (function (_super) {
+        var NetworkTimeoutError = /** @class */ (function (_super) {
             __extends(NetworkTimeoutError, _super);
             function NetworkTimeoutError(message) {
-                _super.call(this, message);
-                this.name = "NetworkTimeoutError";
+                var _this = _super.call(this, message) || this;
+                _this.name = "NetworkTimeoutError";
+                return _this;
             }
             return NetworkTimeoutError;
-        })(Errors.NetworkError);
+        }(Errors.NetworkError));
         Errors.NetworkTimeoutError = NetworkTimeoutError;
     })(Errors = IbercheckApi.Errors || (IbercheckApi.Errors = {}));
 })(IbercheckApi || (IbercheckApi = {}));
@@ -267,13 +276,13 @@ var IbercheckApi;
     var Errors;
     (function (Errors) {
         "use strict";
-        var NotFoundError = (function () {
+        var NotFoundError = /** @class */ (function () {
             function NotFoundError(message) {
                 this.name = "NotFoundError";
                 this.message = message;
             }
             return NotFoundError;
-        })();
+        }());
         Errors.NotFoundError = NotFoundError;
     })(Errors = IbercheckApi.Errors || (IbercheckApi.Errors = {}));
 })(IbercheckApi || (IbercheckApi = {}));
@@ -282,13 +291,13 @@ var IbercheckApi;
     var Errors;
     (function (Errors) {
         "use strict";
-        var ServerError = (function () {
+        var ServerError = /** @class */ (function () {
             function ServerError(message) {
                 this.name = "ServerError";
                 this.message = message;
             }
             return ServerError;
-        })();
+        }());
         Errors.ServerError = ServerError;
     })(Errors = IbercheckApi.Errors || (IbercheckApi.Errors = {}));
 })(IbercheckApi || (IbercheckApi = {}));
@@ -297,7 +306,7 @@ var IbercheckApi;
     var Errors;
     (function (Errors) {
         "use strict";
-        var ValidationError = (function (_super) {
+        var ValidationError = /** @class */ (function (_super) {
             __extends(ValidationError, _super);
             /**
              * @param {number} code ApplicationProblem `status` field.
@@ -306,11 +315,12 @@ var IbercheckApi;
              * @param {{any: {string}}} messages ApplicationProblem `validation_messages` field.
              */
             function ValidationError(code, name, message, messages) {
-                _super.call(this, code, name, message);
-                this.messages = messages;
+                var _this = _super.call(this, code, name, message) || this;
+                _this.messages = messages;
+                return _this;
             }
             return ValidationError;
-        })(Errors.ApiLogicError);
+        }(Errors.ApiLogicError));
         Errors.ValidationError = ValidationError;
     })(Errors = IbercheckApi.Errors || (IbercheckApi.Errors = {}));
 })(IbercheckApi || (IbercheckApi = {}));
@@ -319,7 +329,7 @@ var IbercheckApi;
     var Helper;
     (function (Helper) {
         "use strict";
-        var HalLink = (function () {
+        var HalLink = /** @class */ (function () {
             function HalLink() {
             }
             /**
@@ -347,7 +357,7 @@ var IbercheckApi;
                 return model._links[relational];
             };
             return HalLink;
-        })();
+        }());
         Helper.HalLink = HalLink;
     })(Helper = IbercheckApi.Helper || (IbercheckApi.Helper = {}));
 })(IbercheckApi || (IbercheckApi = {}));

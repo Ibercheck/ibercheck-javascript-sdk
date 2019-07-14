@@ -38,7 +38,7 @@ This class provide methods for create HTTP requests.
 Example:
 
 ```js
-  var oauth2_token = ".....";
+  const oauth2_token = ".....";
 
   function successAction(ApiResponse) {
     // Custom code
@@ -65,7 +65,7 @@ Example:
 
   // Upload a file
   // <input type="file" name="file1" id="file1">
-  var fileElement = document.getElementById("file1");
+  const fileElement = document.getElementById("file1");
   IbercheckApi.ApiRequest.upload(oauth2_token, "https://api_dev.ibercheck.net/user/9999", fileElement)
     .then(successAction, errorAction)
   ;
@@ -81,9 +81,9 @@ Example:
 
 ```js
   // apiHost only contains the API domain.
-  var apiHost = "https://api_dev.ibercheck.net";
+  const apiHost = "https://api_dev.ibercheck.net";
 
-  var authorizationOnlineSignatureHref = "https://api_dev.ibercheck.net/..../example"
+  const authorizationOnlineSignatureHref = "https://api_dev.ibercheck.net/..../example"
 
   function successAction(ApiResponse) {
     // Custom code
@@ -93,7 +93,7 @@ Example:
     // Custom code
   }
 
-  var onlineSignature = new IbercheckApi.AuthorizationOnlineSignature(apiHost);
+  const onlineSignature = new IbercheckApi.AuthorizationOnlineSignature(apiHost);
   onlineSignature.waitForResult()
     .then(successAction, errorAction)
   ;
@@ -111,13 +111,13 @@ This class makes easy to retrieve the hypermedia links provided in the API model
 Example:
 
 ```js
-  var oauth2_token = ".....";
+  const oauth2_token = ".....";
 
   function firstAction(ApiResponse) {
     // Check if the model has the link `fooLink`
     if (IbercheckApi.Helper.HalLink.hasLink(ApiResponse, "fooLink")) {
       // Retrieve the link `fooLink`
-      var fooLink = IbercheckApi.Helper.HalLink.getLink(ApiResponse, "fooLink");
+      const fooLink = IbercheckApi.Helper.HalLink.getLink(ApiResponse, "fooLink");
 
       return IbercheckApi.ApiRequest.get(oauth2_token, fooLink.href);
     }

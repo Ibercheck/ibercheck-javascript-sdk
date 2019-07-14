@@ -11,7 +11,7 @@ module.exports = function (config) {
     // list of files / patterns to load in the browser
     files: [
       // test helper code
-      "bower_components/jquery/dist/jquery.js",
+      "node_modules/jquery/dist/jquery.js",
       "node_modules/jasmine-ajax/lib/mock-ajax.js",
 
       // project files

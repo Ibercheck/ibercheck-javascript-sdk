@@ -1,6 +1,10 @@
 (function () {
   "use strict";
 }());
+
+const puppeteer = require('puppeteer');
+process.env.CHROME_BIN = puppeteer.executablePath();
+
 module.exports = function (grunt) {
   // Force use of Unix newlines
   grunt.util.linefeed = "\n";
@@ -27,7 +31,7 @@ module.exports = function (grunt) {
       },
       unit: {
         browsers: [
-          "PhantomJS"
+          "ChromeHeadless"
         ],
         singleRun: true
       }
@@ -37,17 +41,6 @@ module.exports = function (grunt) {
       default: {
         tsconfig: {
           passThrough: true
-        }
-      }
-    },
-
-    tsd: {
-      options: {
-        config: "tsd.json"
-      },
-      install: {
-        options: {
-          command: "reinstall"
         }
       }
     },
@@ -69,7 +62,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask("build_js", ["build_ts"]);
   grunt.registerTask("build_ts", ["tslint", "ts"]);
-  grunt.registerTask("default", ["tsd", "clean:dist", "build_js", "test_js"]);
+  grunt.registerTask("default", ["clean:dist", "build_js", "test_js"]);
   grunt.registerTask("test", ["test_full"]);
   grunt.registerTask("test_full", ["karma"]);
   grunt.registerTask("test_js", ["karma:unit"]);

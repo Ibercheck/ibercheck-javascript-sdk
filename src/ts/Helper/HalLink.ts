@@ -10,7 +10,7 @@ module IbercheckApi.Helper {
          * @param {string} relational Link name.
          * @returns {boolean}
          */
-        static hasLink(model: IGenericResponse, relational: string): boolean {
+        public static hasLink(model: IGenericResponse, relational: string): boolean {
             return (model._links.hasOwnProperty(relational));
         }
 
@@ -22,7 +22,7 @@ module IbercheckApi.Helper {
          * @returns {Hal.Link}
          * @throws error if cannot return the URI.
          */
-        static getLink(model: IGenericResponse, relational: string): Hal.Link {
+        public static getLink(model: IGenericResponse, relational: string): Hal.Link {
             if (!this.hasLink(model, relational)) {
                 throw new Error("There is no link with the desired relational. Use hasLink() to test this");
             }

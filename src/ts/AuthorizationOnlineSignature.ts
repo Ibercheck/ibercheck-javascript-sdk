@@ -5,7 +5,7 @@ module IbercheckApi {
      * Notify the application from events in other windows.
      */
     export class AuthorizationOnlineSignature {
-        apiHost: string;
+        public readonly apiHost: string;
 
         /**
          * @param {string} apiHost
@@ -19,19 +19,19 @@ module IbercheckApi {
          *
          * @returns {Promise<IGenericResponse>}
          */
-        waitForResult(): Promise<IGenericResponse> {
+        public waitForResult(): Promise<IGenericResponse> {
             // Create IE + others compatible event handler
-            let addEventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
-            let removeEventMethod = window.removeEventListener ? "removeEventListener" : "detachEvent";
-            let messageEvent = addEventMethod === "attachEvent" ? "onmessage" : "message";
+            const addEventMethod = window.addEventListener ? "addEventListener" : "attachEvent";
+            const removeEventMethod = window.removeEventListener ? "removeEventListener" : "detachEvent";
+            const messageEvent = addEventMethod === "attachEvent" ? "onmessage" : "message";
 
             return new Promise((resolve: (value: any) => void, reject: (reason: any) => void): void => {
-                let messageCallback = (event: MessageEvent): void => {
+                const messageCallback = (event: MessageEvent): void => {
                     if (event.origin !== this.apiHost) {
                         return;
                     }
 
-                    let data = JSON.parse(event.data);
+                    const data = JSON.parse(event.data);
                     try {
                         ApiRequest.testForLogicalError(data);
                     } catch (e) {
