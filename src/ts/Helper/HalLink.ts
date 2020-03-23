@@ -1,4 +1,4 @@
-module IbercheckApi.Helper {
+namespace IbercheckApi.Helper {
     "use strict";
 
     export class HalLink {

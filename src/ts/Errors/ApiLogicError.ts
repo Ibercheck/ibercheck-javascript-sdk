@@ -1,4 +1,4 @@
-module IbercheckApi.Errors {
+namespace IbercheckApi.Errors {
     "use strict";
 
     export class ApiLogicError implements Error {

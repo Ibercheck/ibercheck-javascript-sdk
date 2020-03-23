@@ -1,4 +1,4 @@
-module IbercheckApi {
+namespace IbercheckApi {
     "use strict";
 
     /**

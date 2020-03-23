@@ -1,4 +1,4 @@
-declare module IbercheckApi {
+declare namespace IbercheckApi {
     /**
      * Fields for generic responses
      */

@@ -1,6 +1,6 @@
 /// <reference types="jquery" />
 /// <reference types="hypertext-application-language" />
-declare module IbercheckApi {
+declare namespace IbercheckApi {
     class ApiRequest {
         /**
          * Get data from the API
@@ -56,7 +56,7 @@ declare module IbercheckApi {
         static ajax(endpoint: string, accessToken: string, ajaxOptions?: JQueryAjaxSettings): Promise<IGenericResponse>;
     }
 }
-declare module IbercheckApi {
+declare namespace IbercheckApi {
     /**
      * Notify the application from events in other windows.
      */
@@ -74,7 +74,7 @@ declare module IbercheckApi {
         waitForResult(): Promise<IGenericResponse>;
     }
 }
-declare module IbercheckApi.Errors {
+declare namespace IbercheckApi.Errors {
     class ApiLogicError implements Error {
         code: number;
         message: string;
@@ -87,34 +87,34 @@ declare module IbercheckApi.Errors {
         constructor(code: number, name: string, message: string);
     }
 }
-declare module IbercheckApi.Errors {
+declare namespace IbercheckApi.Errors {
     class NetworkError implements Error {
         name: string;
         message: string;
         constructor(message?: string);
     }
 }
-declare module IbercheckApi.Errors {
+declare namespace IbercheckApi.Errors {
     class NetworkTimeoutError extends NetworkError {
         name: string;
         constructor(message?: string);
     }
 }
-declare module IbercheckApi.Errors {
+declare namespace IbercheckApi.Errors {
     class NotFoundError implements Error {
         name: string;
         message: string;
         constructor(message?: string);
     }
 }
-declare module IbercheckApi.Errors {
+declare namespace IbercheckApi.Errors {
     class ServerError implements Error {
         name: string;
         message: string;
         constructor(message?: string);
     }
 }
-declare module IbercheckApi.Errors {
+declare namespace IbercheckApi.Errors {
     class ValidationError extends ApiLogicError {
         messages: {
             any: string;
@@ -130,7 +130,7 @@ declare module IbercheckApi.Errors {
         });
     }
 }
-declare module IbercheckApi.Helper {
+declare namespace IbercheckApi.Helper {
     class HalLink {
         /**
          * Indicate if the model has the specified link.
