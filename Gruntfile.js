@@ -1,10 +1,6 @@
 (function () {
   "use strict";
 }());
-
-const puppeteer = require('puppeteer');
-process.env.CHROME_BIN = puppeteer.executablePath();
-
 module.exports = function (grunt) {
   // Force use of Unix newlines
   grunt.util.linefeed = "\n";
