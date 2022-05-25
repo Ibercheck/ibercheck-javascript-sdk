@@ -9,7 +9,7 @@
   "devDependencies": {
     "@types/hypertext-application-language": "*",
     "@types/jquery": "^3.3.33",
-    "grunt": "^1.3.0",
+    "grunt": "^1.5.3",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-karma": "^3.0.0",
     "grunt-ts": "^6.0.0-beta.22",
